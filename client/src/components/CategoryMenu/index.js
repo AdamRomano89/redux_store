@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useQuery } from '@apollo/client';
-import { useStoreContext } from '../../utils/GlobalState';
+// import { useStoreContext } from '../../utils/GlobalState';
 import {
   UPDATE_CATEGORIES,
   UPDATE_CURRENT_CATEGORY,
@@ -8,31 +8,36 @@ import {
 import { QUERY_CATEGORIES } from '../../utils/queries';
 import { idbPromise } from '../../utils/helpers';
 
-function CategoryMenu() {
-  const [state, dispatch] = useStoreContext();
+import {useDispatch, useSelector} from 'react-redux';
 
-  const { categories } = state;
+function CategoryMenu() {
+  // const [state, dispatch] = useStoreContext();
+  // const { categories } = state;
+
+  const dispatch = useDispatch();
+
+  const categories = useSelector(state => state.categories);
 
   const { loading, data: categoryData } = useQuery(QUERY_CATEGORIES);
 
-  useEffect(() => {
-    if (categoryData) {
-      dispatch({
-        type: UPDATE_CATEGORIES,
-        categories: categoryData.categories,
-      });
-      categoryData.categories.forEach((category) => {
-        idbPromise('categories', 'put', category);
-      });
-    } else if (!loading) {
-      idbPromise('categories', 'get').then((categories) => {
-        dispatch({
-          type: UPDATE_CATEGORIES,
-          categories: categories,
-        });
-      });
-    }
-  }, [categoryData, loading, dispatch]);
+  // useEffect(() => {
+  //   if (categoryData) {
+  //     dispatch({
+  //       type: UPDATE_CATEGORIES,
+  //       categories: categoryData.categories,
+  //     });
+  //     categoryData.categories.forEach((category) => {
+  //       idbPromise('categories', 'put', category);
+  //     });
+  //   } else if (!loading) {
+  //     idbPromise('categories', 'get').then((categories) => {
+  //       dispatch({
+  //         type: UPDATE_CATEGORIES,
+  //         categories: categories,
+  //       });
+  //     });
+  //   }
+  // }, [categoryData, loading, dispatch]);
 
   const handleClick = (id) => {
     dispatch({
@@ -41,10 +46,12 @@ function CategoryMenu() {
     });
   };
 
+  console.log(categories);
+
   return (
     <div>
       <h2>Choose a Category:</h2>
-      {categories.map((item) => (
+      {/* {categories.map((item) => (
         <button
           key={item._id}
           onClick={() => {
@@ -53,7 +60,7 @@ function CategoryMenu() {
         >
           {item.name}
         </button>
-      ))}
+      ))} */}
     </div>
   );
 }
