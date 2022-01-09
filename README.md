@@ -17,9 +17,17 @@ https://reduxstorefullstack.herokuapp.com/
 ``` MONGODB_URI=YOUR_MONGODB_URI ```
 
 ###### CLI
-``` npm run install```
-``` npm run seed ```
-```npm run start ```
+```
+npm run install
+```
+
+```
+npm run seed
+```
+
+```
+npm run start
+```
 
 #### Project Visuals :sunglasses:
 <img width="1156" alt="Screenshot" src="https://res.cloudinary.com/dasr4nopa/image/upload/v1641751918/Untitled_pfplau.jpg">
