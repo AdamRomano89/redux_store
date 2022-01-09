@@ -12,14 +12,14 @@ https://reduxstorefullstack.herokuapp.com/
 
 #### To use:
 ###### You will need to type the following command in the root folder.
-/// cp .env.example .env ///
+``` cp .env.example .env ```
 ###### You also need to add MongoDB URI to the enviorment variable.
-/// MONGODB_URI ///
+``` MONGODB_URI=YOUR_MONGODB_URI ```
 
 ###### CLI
-/ npm run install
-/ npm run seed
-/ npm run start
+``` npm run install```
+``` npm run seed ```
+```npm run start ```
 
 #### Project Visuals :sunglasses:
 <img width="1156" alt="Screenshot" src="https://res.cloudinary.com/dasr4nopa/image/upload/v1641751918/Untitled_pfplau.jpg">
