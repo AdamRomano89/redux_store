@@ -7,6 +7,8 @@ A full-stack Redux store using the following technologies:
 - GraphQl Server
 - React / Apollo Client/ Redux
 
+## Link To Live Deployment 
+https://reduxstorefullstack.herokuapp.com/
 
 #### To use:
 ###### You will need to type the following command in the root folder.
