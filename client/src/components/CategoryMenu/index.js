@@ -8,7 +8,7 @@ import {
 import { QUERY_CATEGORIES } from '../../utils/queries';
 import { idbPromise } from '../../utils/helpers';
 
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 function CategoryMenu() {
   // const [state, dispatch] = useStoreContext();
@@ -16,28 +16,28 @@ function CategoryMenu() {
 
   const dispatch = useDispatch();
 
-  const categories = useSelector(state => state.categories);
+  const { categories } = useSelector(state => state.shop);
 
   const { loading, data: categoryData } = useQuery(QUERY_CATEGORIES);
 
-  // useEffect(() => {
-  //   if (categoryData) {
-  //     dispatch({
-  //       type: UPDATE_CATEGORIES,
-  //       categories: categoryData.categories,
-  //     });
-  //     categoryData.categories.forEach((category) => {
-  //       idbPromise('categories', 'put', category);
-  //     });
-  //   } else if (!loading) {
-  //     idbPromise('categories', 'get').then((categories) => {
-  //       dispatch({
-  //         type: UPDATE_CATEGORIES,
-  //         categories: categories,
-  //       });
-  //     });
-  //   }
-  // }, [categoryData, loading, dispatch]);
+  useEffect(() => {
+    if (categoryData) {
+      dispatch({
+        type: UPDATE_CATEGORIES,
+        categories: categoryData.categories,
+      });
+      categoryData.categories.forEach((category) => {
+        idbPromise('categories', 'put', category);
+      });
+    } else if (!loading) {
+      idbPromise('categories', 'get').then((categories) => {
+        dispatch({
+          type: UPDATE_CATEGORIES,
+          categories: categories,
+        });
+      });
+    }
+  }, [categoryData, loading, dispatch]);
 
   const handleClick = (id) => {
     dispatch({
@@ -46,12 +46,10 @@ function CategoryMenu() {
     });
   };
 
-  console.log(categories);
-
   return (
     <div>
       <h2>Choose a Category:</h2>
-      {/* {categories.map((item) => (
+      {categories.map((item) => (
         <button
           key={item._id}
           onClick={() => {
@@ -60,7 +58,7 @@ function CategoryMenu() {
         >
           {item.name}
         </button>
-      ))} */}
+      ))}
     </div>
   );
 }

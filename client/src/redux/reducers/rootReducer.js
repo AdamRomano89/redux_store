@@ -9,7 +9,7 @@ import {
     UPDATE_CURRENT_CATEGORY,
     CLEAR_CART,
     TOGGLE_CART
-  } from "../constants";
+  } from "../../utils/actions";
 
 const initialState = {
     products: [],
